@@ -323,5 +323,3 @@ void demonstrate_maxwell_equations() {
     // ∇ × H = J + iωD
     // ∇ · D = ρ
     // ∇ · B = 0
-
-
