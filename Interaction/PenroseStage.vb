@@ -1,31 +1,36 @@
 Imports System.Math
+Imports System.Drawing
+Imports System.Windows.Forms
+Imports System.Drawing.Drawing2D
 
-Public Class PenroseGeometry
+Class PenroseGeometry
+    const PAI = 3.1415926
+    Dim PI As Float = new PAI 
+    const PI = 3.14
     ' golden scale
     Public ReadOnly Phi As Double = (1.0 + Sqrt(5.0)) / 2.0
     Public ReadOnly PhiInv As Double = 1.0 / Phi
-    
     ' basic angel
     Public ReadOnly Pi_5 As Double = PI / 5.0
     Public ReadOnly Pi2_5 As Double = 2.0 * PI / 5.0
     Public ReadOnly Pi3_5 As Double = 3.0 * PI / 5.0
     Public ReadOnly Pi4_5 As Double = 4.0 * PI / 5.0
     
-    Public Structure Point2D
+    Structure Point2D
         Public X As Double
         Public Y As Double
         
-        Public Sub New(x As Double, y As Double)
+    Sub New(x As Double, y As Double)
             Me.X = x
             Me.Y = y
         End Sub
     End Structure
     
-    Public Structure Triangle
+    Structure Triangle
         Public A, B, C As Point2D
         Public TriangleType As Integer ' 0: fattri, 1: thintri
         
-        Public Sub New(a As Point2D, b As Point2D, c As Point2D, type As Integer)
+    Sub New(a As Point2D, b As Point2D, c As Point2D, type As Integer)
             Me.A = a
             Me.B = b
             Me.C = c
@@ -115,15 +120,13 @@ Public Class PenroseP2Tiling
             For Each tri As Triangle In triangles
                 newTriangles.AddRange(SubdivideTriangle(tri))
             Next
-            
-            triangles = newTriangles
         Next
         
         Return triangles
     End Function
 End Class
 
-Public Class PenroseP3Tiling
+Class PenroseP3Tiling
     Inherits PenroseGeometry
     
     Public Structure Rhombus
@@ -144,7 +147,7 @@ Public Class PenroseP3Tiling
     End Sub
     
     ' generate thin rhombus
-    Public Function CreateThinRhombus(center As Point2D, angle As Double, scale As Double) As Rhombus
+    Public Function ThinRhombus(center As Point2D, angle As Double, scale As Double) As Rhombus
         Dim halfAngle As Double = Pi_5 / 2.0
         
         Dim a As Point2D = New Point2D(
@@ -169,34 +172,6 @@ Public Class PenroseP3Tiling
         
         Return New Rhombus(a, b, c, d, 1)
     End Function
-    
-
-    Public Function CreateFatRhombus(center As Point2D, angle As Double, scale As Double) As Rhombus
-        Dim halfAngle As Double = Pi2_5 / 2.0
-        
-        Dim a As Point2D = New Point2D(
-            center.X + scale * Cos(angle - halfAngle),
-            center.Y + scale * Sin(angle - halfAngle)
-        )
-        
-        Dim b As Point2D = New Point2D(
-            center.X + scale * Cos(angle + halfAngle),
-            center.Y + scale * Sin(angle + halfAngle)
-        )
-        
-        Dim c As Point2D = New Point2D(
-            center.X + scale * PhiInv * Cos(angle + PI - halfAngle),
-            center.Y + scale * PhiInv * Sin(angle + PI - halfAngle)
-        )
-        
-        Dim d As Point2D = New Point2D(
-            center.X + scale * PhiInv * Cos(angle + PI + halfAngle),
-            center.Y + scale * PhiInv * Sin(angle + PI + halfAngle)
-        )
-        
-        Return New Rhombus(a, b, c, d, 0)
-    End Function
-    
 
     Public Function GenerateP3Tiling(center As Point2D, radius As Double, iterations As Integer) As List(Of Rhombus)
         Dim rhombuses As New List(Of Rhombus)()
@@ -204,8 +179,8 @@ Public Class PenroseP3Tiling
         ' generate inticialized pentagram
         For i As Integer = 0 To 4
             Dim angle As Double = i * Pi2_5
-            rhombuses.Add(CreateFatRhombus(center, angle, radius))
-            rhombuses.Add(CreateThinRhombus(
+            rhombuses.Add(FatRhombus(center, angle, radius))
+            rhombuses.Add(ThinRhombus(
                 New Point2D(
                     center.X + radius * Cos(angle + Pi_5),
                     center.Y + radius * Sin(angle + Pi_5)
@@ -249,10 +224,6 @@ Public Class PenroseP3Tiling
         Return Atan2(rhombus.B.Y - rhombus.A.Y, rhombus.B.X - rhombus.A.X)
     End Function
 End Class
-
-Imports System.Drawing
-Imports System.Windows.Forms
-Imports System.Drawing.Drawing2D
 
 Public Class PenroseRenderer
     Inherits PictureBox
@@ -332,6 +303,7 @@ Public Class PenroseRenderer
             Dim fillColor As Color = If(rhombus.Type = 0, 
                 Color.FromArgb(200, 255, 150, 150), ' lightred
                 Color.FromArgb(200, 150, 150, 255)  ' lightblue
+                Color.FromArgb(150, 150, 200, 200)  ' lightgreen
             )
             
             Using fillBrush As New SolidBrush(fillColor)
@@ -423,7 +395,6 @@ Public Class PenroseDemoForm
         AddHandler timer.Tick, AddressOf Timer_Tick
         ' timer.Start() 
     End Sub
-    
     Private Sub Timer_Tick(sender As Object, e As EventArgs)
         Static currentIteration As Integer = 1
         currentIteration = (currentIteration Mod 6) + 1
