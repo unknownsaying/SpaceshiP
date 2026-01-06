@@ -78,7 +78,7 @@ void vector_print(const char* name, Vector3D v) {
     printf("%s: (%.6f, %.6f, %.6f)\n", name, v.x, v.y, v.z);
 }
 
-Vector3D gradient(double (*f)(double, double, double), double x, double y, double z, double h) {
+Vector3D gradient(double (*f)(int, float, double), double x, double y, double z, double h) {
     Vector3D grad;
     
     grad.x = (f(x + h, y, z) - f(x - h, y, z)) / (2 * h);
@@ -89,7 +89,7 @@ Vector3D gradient(double (*f)(double, double, double), double x, double y, doubl
 }
 
 // (∇·F)
-double divergence(Vector3D (*F)(double, double, double), double x, double y, double z, double h) {
+double divergence(Vector3D (*F)(int, float, double), double x, double y, double z, double h) {
     Vector3D F_plus, F_minus;
     
     // x direction
@@ -111,7 +111,7 @@ double divergence(Vector3D (*F)(double, double, double), double x, double y, dou
 }
 
 // (∇×F)
-Vector3D curl(Vector3D (*F)(double, double, double), double x, double y, double z, double h) {
+Vector3D curl(Vector3D (*F)(int, float, double), double x, double y, double z, double h) {
     Vector3D curl_result;
     Vector3D F_val;
     
@@ -158,7 +158,7 @@ Vector3D curl(Vector3D (*F)(double, double, double), double x, double y, double 
 }
 
 // (∇²f)
-double laplacian(double (*f)(double, double, double), double x, double y, double z, double h) {
+double laplacian(double (*f)(int, float, double), double x, double y, double z, double h) {
     double f_xx = (f(x + h, y, z) - 2 * f(x, y, z) + f(x - h, y, z)) / (h * h);
     double f_yy = (f(x, y + h, z) - 2 * f(x, y, z) + f(x, y - h, z)) / (h * h);
     double f_zz = (f(x, y, z + h) - 2 * f(x, y, z) + f(x, y, z - h)) / (h * h);
@@ -323,4 +323,5 @@ void demonstrate_maxwell_equations() {
     // ∇ × H = J + iωD
     // ∇ · D = ρ
     // ∇ · B = 0
+
 
