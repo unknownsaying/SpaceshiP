@@ -30,9 +30,9 @@ typedef struct {
 
 // Nabla 
 typedef struct {
-    Vector3D (*gradient)(double (*f)(double, double, double), double, double, double, double);
-    double (*divergence)(Vector3D (*F)(double, double, double), double, double, double, double);
-    Vector3D (*curl)(Vector3D (*F)(double, double, double), double, double, double, double);
+    Vector3D (*gradient)(double (*f)(short, int, float), double, double, double, double);
+    double (*divergence)(Vector3D (*F)(short, int, float), double, double, double, double);
+    Vector3D (*curl)(Vector3D (*F)(short, int, float), double, double, double, double);
 } NablaOperator;
 
 Vector3D vector_create(double x, double y, double z) {
@@ -323,3 +323,4 @@ void demonstrate_maxwell_equations() {
     // ∇ × H = J + iωD
     // ∇ · D = ρ
     // ∇ · B = 0
+
