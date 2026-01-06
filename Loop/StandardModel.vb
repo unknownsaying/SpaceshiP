@@ -28,14 +28,14 @@ Public Enum Particle
     HiggsBoson
 End Enum
 
-Public Class Info
+Class Particle
     Default Property Name As String
     Public Property Type As String
     Private Property Charge As String
     Protected Property Spin As String
     Friend Property Mass As String
 
-    Public Sub New(name As String, type As Boolean, charge As String, spin As Boolean, mass As String)
+    Sub New(name As String, type As Boolean, charge As String, spin As Boolean, mass As String)
         Me.Name = name
         Me.Type = type
         Me.Charge = charge
