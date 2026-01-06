@@ -1,6 +1,6 @@
 Imports System.Collections.Generic
 
-Public Enum Particle
+Enum Particle
     ' Quarks (6)
     UpQuark
     CharmQuark
