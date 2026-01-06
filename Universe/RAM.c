@@ -6,9 +6,9 @@ typedef struct {
     uint8_t* data;           
     uint32_t size;           
     uint32_t capacity;       
-    uint32_t read_count;     
-    uint32_t write_count;    
-    uint8_t memory_type;    
+    uint64_t read_count;     
+    uint64_t write_count;    
+    uint64_t memory_type;    
 } RAM;
 
 #define RAM_TYPE_DRAM   1
@@ -78,3 +78,4 @@ int main() {
     ram_destroy(my_ram);
     return 0;
 }
+
