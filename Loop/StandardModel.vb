@@ -47,7 +47,7 @@ End Class
 Module ParticleData
     Public ReadOnly InfoMap As New Dictionary(Of Particle, Info) From {
         {Particle.UpQuark, New Info("Up Quark", "Quark", "+2/3", "1/2", "2.3 MeV/c²")},
-        {Particle.CharmQuark, New Info("Charm Quark", "Quark", "+2/3", "1/2", "1.28 GeV/c²")},
+        {Particle.CharmQuark, New Info("Charm Quark", "Quark", "+2/3", "1/2", "1.275 GeV/c²")},
         {Particle.TopQuark, New Info("Top Quark", "Quark", "+2/3", "1/2", "172.5 GeV/c²")},
         {Particle.DownQuark, New Info("Down Quark", "Quark", "-1/3", "1/2", "4.8 MeV/c²")},
         {Particle.StrangeQuark, New Info("Strange Quark", "Quark", "-1/3", "1/2", "95 MeV/c²")},
