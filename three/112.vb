@@ -424,8 +424,8 @@ const Square = square - antisquare
 const Pyramid = pyramid - antipyramid
 const ONEsquare = ONE % square
 const squareONE = square % ONE
-const oppoPyramid = antipyramid / pyramid
-const dimPyramid = oppopyramid / Pyramid
+const oppoPyramid = oppopyramid / pyramid
+const dimPyramid = antipyramid / Pyramid
 
 Sub SUM
      ["DET/tri"+"tri/DET" == "DETtri"+"triDET"]
