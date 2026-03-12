@@ -10,5 +10,5 @@ be careful to check or distingush the difference in 112.vb file between Undergro
     const Pyramid = pyramid - antipyramid
     const ONEsquare = ONE % square
     const squareONE = square % ONE
-    const oppoPyramid = antipyramid / pyramid
-    const dimPyramid = oppopyramid / Pyramid
+    const oppoPyramid = oppopyramid / pyramid
+    const dimPyramid = antipyramid / Pyramid
