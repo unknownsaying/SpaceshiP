@@ -139,11 +139,11 @@ End Interface
 Class C1H4
     Implements IC1H4
 
-    Public ReadOnly Property CarbonCount As Integer Implements IC1H4.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC1H4.CarbonCount
             Return 1
     End Property
 
-    Public ReadOnly Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
             Return 4
     End Property
 End Class
@@ -151,10 +151,10 @@ End Class
 Class C5H8
     Implements IC1H4
           
-    Public ReadOnly Property CarbonCount As Integer Implements IC1H4.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC1H4.CarbonCount
             Return 5
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
             Return 8
     End Property
 End Class
@@ -162,10 +162,10 @@ End Class
 Class C13H24
     Implements IC1H4
           
-    Public ReadOnly Property CarbonCount As Integer Implements IC1H4.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC1H4.CarbonCount
             Return 13
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC1H4.HydrogenCount
             Return 24
     End Property
 End Class
@@ -198,30 +198,30 @@ End Interface
 
 Class C2H2
     Implements IC2H2
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 2
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 2
     End Property
 End Class
 
 Class C4H2
     Implements IC2H2
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 4
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 2
     End Property
 End Class
 
 Class C6H2
     Implements IC2H2
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 6 
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 2
     End Property
 End Class
@@ -255,30 +255,30 @@ End Interface
 
 Class C2H4
     Implements IC2H4
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 2
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 4
     End Property
 End Class
 
 Class C6H8
     Implements IC2H4
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 6
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 8
     End Property
 End Class
 
 Class C14H12
     Implements IC2H4
-    Public ReadOnly Property CarbonCount As Integer Implements IC2H2.CarbonCount
+    Declare Property CarbonCount As Integer Implements IC2H2.CarbonCount
             Return 14
     End Property
-    Public ReadOnly Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
+    Declare Property HydrogenCount As Integer Implements IC2H2.HydrogenCount
             Return 12
     End Property
 End Class
@@ -303,18 +303,25 @@ Console.WriteLine(C2H4,C6H8,C14H12)
 
 Module XYZT
 Class SpherePoint
-    char X = r * Math.sin(theta) * Math.cos(fai)
-    char Y = r * Math.sin(theta) * Math.sin(fai)
-    char Z = r * Math.cos(fai)
-    char T = r * Math.sin(theta)
+    char X = r * sin(theta) * cos(fai)
+    char Y = r * sin(theta) * sin(fai)
+    char Z = r * cos(fai)
+    char T = r * sin(theta)
     return "X,Y,Z,T"
 End Class
 
 Class SphereRadius
-    const SphereRadiusx = Math.sin(y) + Math.cos(z) 
-    const SphereRadiusy = Math.sin(x) + Math.cos(z) 
-    const SphereRadiusz = Math.sin(y) + Math.cos(x)
+    const SphereRadiusx = sin(y) + cos(z) 
+    const SphereRadiusy = sin(x) + cos(z) 
+    const SphereRadiusz = sin(y) + cos(x)
     return "SphereRadiusx, SphereRadiusy, SphereRadiusz"
+End Class
+
+Class Tetrahedron
+    const X = (cos(-1/3),0,0,1)
+    const Y = (0,cos(-1/3),0,1)
+    const Z = (0,0,1,cos(-1/3))
+    const T = (1,0,0,cos(-1/3))
 End Class
 End Module
 
@@ -328,5 +335,6 @@ const impact5 = "impact0 * impact1" + "impact2 * impact3"
 const impact6 = "impact1 - impact2" + "impact3 - impact4"
 const impact7 = "impact2 / impact3" + "impact4 / impact1"
 const impact8 = "impact3 % impact4" + "impact1 % impact2"
+
 
 Console.WriteLine(impact0, impact1, impact2, impact3, impact4, impact5, impact6, impact7, impact8)
