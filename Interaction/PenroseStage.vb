@@ -39,7 +39,7 @@ Class PenroseGeometry
     End Structure
 End Class
 
-Public Class PenroseP2Tiling
+Class PenroseP2Tiling
     Inherits PenroseGeometry
     
     Public Sub New()
@@ -225,7 +225,7 @@ Class PenroseP3Tiling
     End Function
 End Class
 
-Public Class PenroseRenderer
+Class PenroseRenderer
     Inherits PictureBox
     
     Private p2Tiling As PenroseP2Tiling
@@ -332,7 +332,7 @@ Public Class PenroseRenderer
     End Sub
 End Class
 
-Public Class PenroseDemoForm
+Class PenroseDemoForm
     Inherits Form
     
     Private renderer As PenroseRenderer
@@ -400,4 +400,5 @@ Public Class PenroseDemoForm
         currentIteration = (currentIteration Mod 6) + 1
         renderer.IterationCount = currentIteration
     End Sub
+
 End Class
